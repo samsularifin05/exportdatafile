@@ -1,17 +1,17 @@
-Modul ExportData
-Modul ini memfasilitasi ekspor data ke format Excel dan PDF. Ini mencakup fungsi, ExportData, yang dapat dikonfigurasi untuk menghasilkan laporan berdasarkan data dan konfigurasi kolom yang diberikan. Berikut adalah panduan rinci tentang cara menggunakan modul ini.
+Modul ExportDataFile
+Modul ini memfasilitasi ekspor data ke format Excel dan PDF. Ini mencakup fungsi, ExportDataFile, yang dapat dikonfigurasi untuk menghasilkan laporan berdasarkan data dan konfigurasi kolom yang diberikan. Berikut adalah panduan rinci tentang cara menggunakan modul ini.
 
 Instalasi
-Untuk menggunakan modul ExportData, Anda perlu menginstalnya di proyek Anda. Anda dapat melakukannya menggunakan npm:
+Untuk menggunakan modul ExportDataFile, Anda perlu menginstalnya di proyek Anda. Anda dapat melakukannya menggunakan npm:
 
 Example <a href="https://codesandbox.io/p/sandbox/export-excel-pdf-5v6th4"> Demo </a>
 
 ```typescript
-npm install exportdata
+npm install exportdatafile
 ```
 
 ```typescript
-import { ColumnGenarator, exportdata } from "exportdata";
+import { ColumnGenarator, ExportDataFile } from "exportdatafile";
 
 const DemoPage = () => {
   interface FakturHutang {
@@ -84,7 +84,7 @@ const DemoPage = () => {
     <div>
       <button
         onClick={() =>
-          ExportData({
+          ExportDataFile({
             type: "TXT",
             date: {
               start_date: "11-01-2024",
