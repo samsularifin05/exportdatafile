@@ -1,8 +1,8 @@
-Modul ExportExcelPdf
-Modul ini memfasilitasi ekspor data ke format Excel dan PDF. Ini mencakup fungsi, ExportExcelPdf, yang dapat dikonfigurasi untuk menghasilkan laporan berdasarkan data dan konfigurasi kolom yang diberikan. Berikut adalah panduan rinci tentang cara menggunakan modul ini.
+Modul ExportData
+Modul ini memfasilitasi ekspor data ke format Excel dan PDF. Ini mencakup fungsi, ExportData, yang dapat dikonfigurasi untuk menghasilkan laporan berdasarkan data dan konfigurasi kolom yang diberikan. Berikut adalah panduan rinci tentang cara menggunakan modul ini.
 
 Instalasi
-Untuk menggunakan modul ExportExcelPdf, Anda perlu menginstalnya di proyek Anda. Anda dapat melakukannya menggunakan npm:
+Untuk menggunakan modul ExportData, Anda perlu menginstalnya di proyek Anda. Anda dapat melakukannya menggunakan npm:
 
 Example <a href="https://codesandbox.io/p/sandbox/export-excel-pdf-5v6th4"> Demo </a>
 
