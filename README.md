@@ -1,14 +1,22 @@
 Modul ExportDataFile
-Modul ini memfasilitasi ekspor data ke format Excel dan PDF. Ini mencakup fungsi, ExportDataFile, yang dapat dikonfigurasi untuk menghasilkan laporan berdasarkan data dan konfigurasi kolom yang diberikan. Berikut adalah panduan rinci tentang cara menggunakan modul ini.
+Modul ini memfasilitasi ekspor data ke format Excel PDF dan TXT. Ini mencakup fungsi, ExportDataFile, yang dapat dikonfigurasi untuk menghasilkan laporan berdasarkan data dan konfigurasi kolom yang diberikan. Berikut adalah panduan rinci tentang cara menggunakan modul ini.
 
 Instalasi
 Untuk menggunakan modul ExportDataFile, Anda perlu menginstalnya di proyek Anda. Anda dapat melakukannya menggunakan npm:
 
 Example <a href="https://codesandbox.io/p/sandbox/export-excel-pdf-5v6th4"> Demo </a>
 
-```typescript
+## Install
+
+```
 npm install exportdatafile
 ```
+
+## Fitur
+
+- Download File .xlsx .txt .pdf format
+- Tidak ada kode sisi server
+- Mudah digunakan
 
 ```typescript
 import { ColumnGenarator, ExportDataFile } from "exportdatafile";
@@ -94,7 +102,7 @@ const DemoPage = () => {
             columns: columns,
             grouping: [],
             excelSetting: {
-              titleExcel: "LAPORAN BAYAR BUNGA EXCEL",
+              titleExcel: "Example Export Data Excel",
               bgColor: "000000",
               txtColor: "ffffff",
               grandTotalSetting: {
@@ -103,11 +111,11 @@ const DemoPage = () => {
             },
             txtSetting: {
               dataTxt: data,
-              titleTxt: "Slip Txt FIle",
+              titleTxt: "Example Export Data Txt",
               templateTxt: `--------------- SLIP ---------------\nFaktur         = {no_faktur_hutang}\nDiskon         = {diskon}\nTanggal System = {tgl_system}\nHarga          = {harga}\nBerat          = {berat}\nTotal          = {total}\nInput_by       = {input_by}`
             },
             pdfSetting: {
-              titlePdf: "LAPORAN BAYAR BUNGA PDF",
+              titlePdf: "Example Export Data Pdf",
               orientation: "l",
               unit: "mm",
               bgColor: "000000",
@@ -129,3 +137,18 @@ const DemoPage = () => {
 
 export default DemoPage;
 ```
+
+Option
+Daftar properti yang tersedia dapat ditemukan di bawah. Ini harus diteruskan ke komponen ExportDataFile.
+
+| Properti     | Tipe    | Deskripsi                                                                                                                                                                                                       |
+| ------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type         | String  | Tipe data ekspor, menentukan format file yang akan diekspor. Nilai contoh: "TXT", "PDF", "EXCEL", "ALL" (untuk mengekspor semua file data).                                                                     |
+| date         | Object  | Objek dengan properti `start_date` dan `end_date` yang menentukan rentang tanggal untuk ekspor data. Format: "DD-MM-YYYY".                                                                                      |
+| data         | Array   | Data yang akan diekspor. Jika ingin menggunakan pengelompokan (grouping), berikan detail dalam penggunaannya di dalam array. Setiap elemen array mewakili kolom atau properti berdasarkan mana data akan dikelompokkan.                                                                                                        |
+| columns      | Array   | Kolom-kolom data yang akan diekspor.                                                                                                                                                                            |
+| grouping     | Array   | Array yang menentukan pengaturan pengelompokan untuk data yang diekspor. contoh `[no_faktur]`                                                                                                                   |
+| excelSetting | Object  | Pengaturan khusus untuk ekspor Excel, termasuk `titleExcel`, `bgColor`, `txtColor`, dan `grandTotalSetting` dengan `colSpan`.                                                                                   |
+| txtSetting   | Object  | Pengaturan khusus untuk ekspor TXT, termasuk `dataTxt`, `titleTxt`, dan `templateTxt` yang berisi template untuk file TXT dengan placeholder.                                                                   |
+| pdfSetting   | Object  | Pengaturan khusus untuk ekspor PDF, termasuk `titlePdf`, `orientation`, `unit`, `bgColor`, `txtColor`, `theme`, `grandTotalSetting` dengan `colSpan`, dan `openNewTab` untuk membuka PDF di tab baru (boolean). |
+| openNewTab   | Boolean | Jika true, membuka file PDF yang diekspor di tab baru.                                                                                                                                                          |
