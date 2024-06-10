@@ -84,6 +84,6 @@ interface GenaratorExport<T> {
  * @param date - Rentang tanggal untuk laporan.
  * @param type - Jenis laporan yang akan diekspor ("PDF" "TXT" atau "EXCEL").
  */
-declare const ExportData: <T>({ columns, data, grouping, date, type, txtSetting, pdfSetting, excelSetting, title }: GenaratorExport<T>) => void;
+declare const ExportData: <T>({ columns, data, grouping, date, type, txtSetting, pdfSetting, excelSetting, title, footerSetting }: GenaratorExport<T>) => void;
 
 export { ExportData, type GenaratorExport };
