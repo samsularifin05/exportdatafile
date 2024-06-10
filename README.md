@@ -93,7 +93,7 @@ const DemoPage = () => {
       <button
         onClick={() =>
           ExportDataFile({
-            type: "TXT",
+            type: ["ALL"],
             date: {
               start_date: "11-01-2024",
               end_date: "11-01-2024"
@@ -101,21 +101,22 @@ const DemoPage = () => {
             data: data,
             columns: columns,
             grouping: [],
+            title: "LAPORAN BAYAR BUNGA EXCEL",
             excelSetting: {
-              titleExcel: "Example Export Data Excel",
               bgColor: "000000",
               txtColor: "ffffff",
+              additionalTextHeader: "Nama Toko \n Alamat Toko",
               grandTotalSetting: {
                 colSpan: 2
               }
             },
             txtSetting: {
               dataTxt: data,
-              titleTxt: "Example Export Data Txt",
+              titleTxt: "Slip Txt FIle",
               templateTxt: `--------------- SLIP ---------------\nFaktur         = {no_faktur_hutang}\nDiskon         = {diskon}\nTanggal System = {tgl_system}\nHarga          = {harga}\nBerat          = {berat}\nTotal          = {total}\nInput_by       = {input_by}`
             },
             pdfSetting: {
-              titlePdf: "Example Export Data Pdf",
+              textHeaderLeft: "Nama Toko \n Alamat Toko",
               orientation: "l",
               unit: "mm",
               bgColor: "000000",
@@ -141,21 +142,21 @@ export default DemoPage;
 Option
 Daftar properti yang tersedia dapat ditemukan di bawah. Ini harus diteruskan ke komponen ExportDataFile.
 
-| Properti | Tipe   | Deskripsi                                                                                                                                                                                                               |
-| -------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type     | String | Tipe data ekspor, menentukan format file yang akan diekspor. Nilai contoh: "TXT", "PDF", "EXCEL", "ALL" (untuk mengekspor semua file data).                                                                             |
-| date     | Object | Objek dengan properti `start_date` dan `end_date` yang menentukan rentang tanggal untuk ekspor data. Format: "DD-MM-YYYY".                                                                                              |
-| data     | Array  | Data yang akan diekspor. Jika ingin menggunakan pengelompokan (grouping), berikan detail dalam penggunaannya di dalam array. Setiap elemen array mewakili kolom atau properti berdasarkan mana data akan dikelompokkan. |
-| columns  | Array  | Kolom-kolom data yang akan diekspor. Setiap elemen array merupakan objek dengan properti berikut:                                                                                                                       |
-|          |        | - key: Kunci yang merujuk pada properti data yang akan ditampilkan dalam kolom.                                                                                                                                         |
-|          |        | - label (opsional): Label atau nama yang akan ditampilkan di header kolom.                                                                                                                                              |
-|          |        | - options (opsional): Objek yang berisi pengaturan tambahan untuk kolom, seperti:                                                                                                                                       |
-|          |        | - format (opsional): Tipe format untuk data dalam kolom (misalnya, tipe tanggal atau angka).                                                                                                                            |
-|          |        | - halign (opsional): Penyelarasan horizontal untuk data dalam kolom.                                                                                                                                                    |
-|          |        | - disabledColumn (opsional): Jika true, kolom akan dinonaktifkan dalam data yang diekspor.                                                                                                                              |
-|          |        | - disabledFooter (opsional): Jika true, kolom akan dinonaktifkan dalam bagian footer (grand total).                                                                                                                     
-| grouping | Array | Array yang menentukan pengaturan pengelompokan untuk data yang diekspor. contoh `[no_faktur]` |
-| excelSetting | Object | Pengaturan khusus untuk ekspor Excel, termasuk `titleExcel`, `bgColor`, `txtColor`, dan `grandTotalSetting` dengan `colSpan`. |
-| txtSetting | Object | Pengaturan khusus untuk ekspor TXT, termasuk `dataTxt`, `titleTxt`, dan `templateTxt` yang berisi template untuk file TXT dengan placeholder. |
-| pdfSetting | Object | Pengaturan khusus untuk ekspor PDF, termasuk `titlePdf`, `orientation`, `unit`, `bgColor`, `txtColor`, `theme`, `grandTotalSetting` dengan `colSpan`, dan `openNewTab` untuk membuka PDF di tab baru (boolean). |
-| openNewTab | Boolean | Jika true, membuka file PDF yang diekspor di tab baru. |
+| Properti     | Tipe    | Deskripsi                                                                                                                                                                                                               |
+| ------------ | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type         | String  | Tipe data ekspor, menentukan format file yang akan diekspor. Nilai contoh: "TXT", "PDF", "EXCEL", "ALL" (untuk mengekspor semua file data).                                                                             |
+| date         | Object  | Objek dengan properti `start_date` dan `end_date` yang menentukan rentang tanggal untuk ekspor data. Format: "DD-MM-YYYY".                                                                                              |
+| data         | Array   | Data yang akan diekspor. Jika ingin menggunakan pengelompokan (grouping), berikan detail dalam penggunaannya di dalam array. Setiap elemen array mewakili kolom atau properti berdasarkan mana data akan dikelompokkan. |
+| columns      | Array   | Kolom-kolom data yang akan diekspor. Setiap elemen array merupakan objek dengan properti berikut:                                                                                                                       |
+|              |         | - key: Kunci yang merujuk pada properti data yang akan ditampilkan dalam kolom.                                                                                                                                         |
+|              |         | - label (opsional): Label atau nama yang akan ditampilkan di header kolom.                                                                                                                                              |
+|              |         | - options (opsional): Objek yang berisi pengaturan tambahan untuk kolom, seperti:                                                                                                                                       |
+|              |         | - format (opsional): Tipe format untuk data dalam kolom (misalnya, tipe tanggal atau angka).                                                                                                                            |
+|              |         | - halign (opsional): Penyelarasan horizontal untuk data dalam kolom.                                                                                                                                                    |
+|              |         | - disabledColumn (opsional): Jika true, kolom akan dinonaktifkan dalam data yang diekspor.                                                                                                                              |
+|              |         | - disabledFooter (opsional): Jika true, kolom akan dinonaktifkan dalam bagian footer (grand total).                                                                                                                     |
+| grouping     | Array   | Array yang menentukan pengaturan pengelompokan untuk data yang diekspor. contoh `[no_faktur]`                                                                                                                           |
+| excelSetting | Object  | Pengaturan khusus untuk ekspor Excel, termasuk `titleExcel`, `bgColor`, `txtColor`, dan `grandTotalSetting` dengan `colSpan`.                                                                                           |
+| txtSetting   | Object  | Pengaturan khusus untuk ekspor TXT, termasuk `dataTxt`, `titleTxt`, dan `templateTxt` yang berisi template untuk file TXT dengan placeholder.                                                                           |
+| pdfSetting   | Object  | Pengaturan khusus untuk ekspor PDF, termasuk `titlePdf`, `orientation`, `unit`, `bgColor`, `txtColor`, `theme`, `grandTotalSetting` dengan `colSpan`, dan `openNewTab` untuk membuka PDF di tab baru (boolean).         |
+| openNewTab   | Boolean | Jika true, membuka file PDF yang diekspor di tab baru.                                                                                                                                                                  |
