@@ -19,7 +19,7 @@ npm i exportdatafile
 - Mudah digunakan
 
 ```typescript
-import { ColumnGenarator, ExportData } from "ExportData";
+import { ColumnGenarator, ExportData } from "exportdatafile";
 
 const DemoPage = () => {
   interface FakturHutang {

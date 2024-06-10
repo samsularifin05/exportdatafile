@@ -81,4 +81,4 @@ interface GenaratorExport<T> {
  */
 declare const ExportData: <T>({ columns, data, grouping, date, type, txtSetting, pdfSetting, excelSetting, title }: GenaratorExport<T>) => void;
 
-export { ExportData };
+export { type ColumnGenarator, type DataItemGenerator, ExportData, type GenaratorExport };
