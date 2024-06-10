@@ -1,15 +1,15 @@
-Modul ExportDataFile
-Modul ini memfasilitasi ekspor data ke format Excel PDF dan TXT. Ini mencakup fungsi, ExportDataFile, yang dapat dikonfigurasi untuk menghasilkan laporan berdasarkan data dan konfigurasi kolom yang diberikan. Berikut adalah panduan rinci tentang cara menggunakan modul ini.
+Modul ExportData
+Modul ini memfasilitasi ekspor data ke format Excel PDF dan TXT. Ini mencakup fungsi, ExportData, yang dapat dikonfigurasi untuk menghasilkan laporan berdasarkan data dan konfigurasi kolom yang diberikan. Berikut adalah panduan rinci tentang cara menggunakan modul ini.
 
 Instalasi
-Untuk menggunakan modul ExportDataFile, Anda perlu menginstalnya di proyek Anda. Anda dapat melakukannya menggunakan npm:
+Untuk menggunakan modul ExportData, Anda perlu menginstalnya di proyek Anda. Anda dapat melakukannya menggunakan npm:
 
 Example <a href="https://codesandbox.io/p/sandbox/export-excel-pdf-5v6th4"> Demo </a>
 
 ## Install
 
 ```
-npm install exportdatafile
+npm i exportdatafile
 ```
 
 ## Fitur
@@ -19,7 +19,7 @@ npm install exportdatafile
 - Mudah digunakan
 
 ```typescript
-import { ColumnGenarator, ExportDataFile } from "exportdatafile";
+import { ColumnGenarator, ExportData } from "ExportData";
 
 const DemoPage = () => {
   interface FakturHutang {
@@ -92,7 +92,7 @@ const DemoPage = () => {
     <div>
       <button
         onClick={() =>
-          ExportDataFile({
+          ExportData({
             type: ["ALL"],
             date: {
               start_date: "11-01-2024",
@@ -140,7 +140,7 @@ export default DemoPage;
 ```
 
 Option
-Daftar properti yang tersedia dapat ditemukan di bawah. Ini harus diteruskan ke komponen ExportDataFile.
+Daftar properti yang tersedia dapat ditemukan di bawah. Ini harus diteruskan ke komponen ExportData.
 
 | Properti     | Tipe    | Deskripsi                                                                                                                                                                                                               |
 | ------------ | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
