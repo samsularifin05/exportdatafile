@@ -14,7 +14,6 @@ interface DataItemGenerator {
     [key: string]: any;
 }
 interface GenaratorExport<T> {
-    grouping: string[];
     columns: ColumnGenarator<T>[];
     data: DataItemGenerator[];
     type: ("EXCEL" | "PDF" | "TXT" | "ALL")[];
@@ -40,6 +39,7 @@ interface GenaratorExport<T> {
     date?: {
         start_date?: string;
         end_date?: string;
+        caption?: string;
     };
     txtSetting?: {
         dataTxt?: DataItemGenerator[] | DataItemGenerator;
@@ -54,6 +54,19 @@ interface GenaratorExport<T> {
         grandTotalSetting?: {
             disableGrandTotal?: boolean;
             colSpan?: number;
+        };
+    };
+    grouping: string[];
+    footerSetting?: {
+        subTotal?: {
+            caption?: string;
+            enableCount?: boolean;
+            captionItem?: string;
+        };
+        grandTotal?: {
+            caption?: string;
+            captionItem?: string;
+            enableCount?: boolean;
         };
     };
 }
@@ -73,4 +86,4 @@ interface GenaratorExport<T> {
  */
 declare const ExportData: <T>({ columns, data, grouping, date, type, txtSetting, pdfSetting, excelSetting, title }: GenaratorExport<T>) => void;
 
-export { type ColumnGenarator, type DataItemGenerator, ExportData, type GenaratorExport };
+export { ExportData, type GenaratorExport };
