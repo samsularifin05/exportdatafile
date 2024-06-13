@@ -45,6 +45,7 @@ interface GenaratorExport<T> {
         dataTxt?: DataItemGenerator[] | DataItemGenerator;
         titleTxt: string;
         templateTxt?: string;
+        copy?: boolean;
     };
     excelSetting?: {
         titleExcel?: string;
