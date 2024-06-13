@@ -1,4 +1,4 @@
-type FormatType = "RP" | "GR" | "DATETIME" | "";
+type FormatType = "RP" | "GR" | "DATETIME" | "NUMBER" | "";
 type HalignType = "center" | "right" | "left" | "";
 interface ColumnGenarator<T> {
     key: keyof T;
