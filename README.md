@@ -93,7 +93,7 @@ const DemoPage = () => {
       <button
         onClick={() =>
           ExportData({
-            type: ["ALL"],
+            type: ["EXCEL"],
             date: {
               start_date: "11-01-2024",
               end_date: "11-01-2024"
@@ -101,11 +101,11 @@ const DemoPage = () => {
             data: data,
             columns: columns,
             grouping: [],
-            title: "LAPORAN BAYAR BUNGA EXCEL",
+            title: "LAPORAN PDF EXCEL",
             excelSetting: {
-              bgColor: "000000",
-              txtColor: "ffffff",
-              additionalTextHeader: "Nama Toko \n Alamat Toko",
+              bgColor: "E8E5E5",
+              txtColor: "000",
+              additionalTextHeader: "Nama Toko \nAlamat Toko",
               grandTotalSetting: {
                 colSpan: 2
               }
@@ -116,16 +116,28 @@ const DemoPage = () => {
               templateTxt: `--------------- SLIP ---------------\nFaktur         = {no_faktur_hutang}\nDiskon         = {diskon}\nTanggal System = {tgl_system}\nHarga          = {harga}\nBerat          = {berat}\nTotal          = {total}\nInput_by       = {input_by}`
             },
             pdfSetting: {
-              textHeaderLeft: "Nama Toko \n Alamat Toko",
+              textHeaderLeft: "Nama Toko \nAlamat Toko",
               orientation: "l",
               unit: "mm",
-              bgColor: "000000",
-              txtColor: "ffffff",
+              bgColor: "E8E5E5",
+              txtColor: "000",
               theme: "grid",
               grandTotalSetting: {
                 colSpan: 2
               },
               openNewTab: true
+            },
+            footerSetting: {
+              subTotal: {
+                caption: "SUB TOTAL",
+                enableCount: true,
+                captionItem: "QTY"
+              },
+              grandTotal: {
+                caption: "GRAND TOTAL",
+                enableCount: true,
+                captionItem: "QTY"
+              }
             }
           })
         }

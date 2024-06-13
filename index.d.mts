@@ -83,6 +83,7 @@ interface GenaratorExport<T> {
  * @param txtSetting - Opsi untuk config Txt file.
  * @param date - Rentang tanggal untuk laporan.
  * @param type - Jenis laporan yang akan diekspor ("PDF" "TXT" atau "EXCEL").
+ * @param footerSetting - Setting Footer Subtotal atau GranTotal
  */
 declare const ExportData: <T>({ columns, data, grouping, date, type, txtSetting, pdfSetting, excelSetting, title, footerSetting }: GenaratorExport<T>) => void;
 
