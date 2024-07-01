@@ -108,6 +108,25 @@ const DemoPage = () => {
               additionalTextHeader: "Nama Toko \nAlamat Toko",
               grandTotalSetting: {
                 colSpan: 2
+              },
+              customize: (worksheet) => {
+                // Menambahkan penyesuaian pada worksheet
+                const rows = worksheet.addRow([]);
+
+                rows.getCell(1).value = "Text";
+                rows.getCell(1).alignment = { horizontal: "center" };
+
+                // Menggabungkan sel dari kolom A hingga kolom terakhir yang tidak terpakai pada baris tanggal
+                worksheet.mergeCells(
+                  `A${rows.number}:${String.fromCharCode(64)}${rows.number}`
+                );
+                rows.eachCell((cell) => {
+                  cell.font = {
+                    color: { argb: "00000" },
+                    bold: true,
+                    size: 12
+                  };
+                }); // Menyesuaikan lebar kolom C
               }
             },
             txtSetting: {
@@ -125,7 +144,20 @@ const DemoPage = () => {
               grandTotalSetting: {
                 colSpan: 2
               },
-              openNewTab: true
+              openNewTab: true,
+              customize: (doc, finalY, autoTable) => {
+                doc.text("Custom Jspdf", 15, finalY + 5);
+                if (autoTable) {
+                  autoTable(doc, {
+                    startY: finalY + 10,
+                    head: [["Column 1", "Column 2"]],
+                    body: [
+                      ["Data 1", "Data 2"],
+                      ["Data 3", "Data 4"]
+                    ]
+                  });
+                }
+              }
             },
             footerSetting: {
               subTotal: {
