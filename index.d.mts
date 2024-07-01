@@ -1,3 +1,6 @@
+import jsPDF from 'jspdf';
+import ExcelJS from 'exceljs';
+
 type FormatType = "RP" | "GR" | "DATETIME" | "NUMBER" | "";
 type HalignType = "center" | "right" | "left" | "";
 interface ColumnGenarator<T> {
@@ -13,6 +16,8 @@ interface ColumnGenarator<T> {
 interface DataItemGenerator {
     [key: string]: any;
 }
+type CustomizePdfFunction = (doc: jsPDF, finalY: number, autoTable?: any) => void;
+type CustomizeFunctionExcel = (worksheet: ExcelJS.Worksheet) => void;
 interface GenaratorExport<T> {
     columns: ColumnGenarator<T>[];
     data: DataItemGenerator[];
@@ -27,6 +32,7 @@ interface GenaratorExport<T> {
         bgColor?: string;
         titlePdf?: string;
         txtColor?: string;
+        finalY?: number;
         textHeaderRight?: string;
         textHeaderLeft?: string;
         theme?: "grid" | "striped" | "plain";
@@ -35,6 +41,7 @@ interface GenaratorExport<T> {
             colSpan?: number;
         };
         openNewTab?: boolean;
+        customize?: CustomizePdfFunction;
     };
     date?: {
         start_date?: string;
@@ -56,6 +63,7 @@ interface GenaratorExport<T> {
             disableGrandTotal?: boolean;
             colSpan?: number;
         };
+        customize?: CustomizeFunctionExcel;
     };
     grouping: string[];
     footerSetting?: {
