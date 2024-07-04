@@ -188,43 +188,42 @@ Daftar properti yang tersedia dapat ditemukan di bawah. Ini harus diteruskan ke 
 
 ## Tabel Properti
 
-| Properti                       | Tipe       | Deskripsi                                                                                                                                                                                                 |
-| ------------------------------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type                           | string[]   | Tipe file yang akan diekspor, bisa berupa "PDF", "EXCEL", atau "TXT".                                                                                                                                     |
-| date                           | object     | Objek yang berisi `start_date` dan `end_date` untuk rentang tanggal data yang akan diekspor.                                                                                                             |
-| data                           | array      | Data yang akan diekspor dalam bentuk array objek.                                                                                                                                                         |
-| columns                        | array      | Daftar kolom yang akan diekspor beserta label dan pengaturannya.                                                                                                                                          |
-| grouping                       | array      | Pengaturan gruping data, kosongkan jika tidak perlu gruping.                                                                                                                                              |
-| title                          | string     | Judul laporan yang akan ditampilkan di file yang diekspor.                                                                                                                                                 |
-| excelSetting                   | object     | Pengaturan tambahan untuk file Excel seperti warna latar belakang, warna teks, header tambahan, dll.                                                                                                      |
-| txtSetting                     | object     | Pengaturan tambahan untuk file TXT seperti data template, judul, apakah akan menyalin teks, dll.                                                                                                          |
-| pdfSetting                     | object     | Pengaturan tambahan untuk file PDF seperti judul, header, orientasi, satuan, tema, dll.                                                                                                                   |
-| footerSetting                  | object     | Pengaturan footer seperti sub total dan grand total.                                                                                                                                                      |
-| excelSetting.bgColor           | string     | Warna latar belakang untuk file Excel.                                                                                                                                                                    |
-| excelSetting.txtColor          | string     | Warna teks untuk file Excel.                                                                                                                                                                              |
-| excelSetting.additionalTextHeader | string  | Teks tambahan untuk header file Excel.                                                                                                                                                                    |
-| excelSetting.grandTotalSetting | object     | Pengaturan grand total untuk file Excel.                                                                                                                                                                  |
-| excelSetting.customize         | function   | Fungsi untuk menyesuaikan worksheet file Excel.                                                                                                                                                           |
-| txtSetting.dataTxt             | object     | Data yang akan diekspor ke file TXT.                                                                                                                                                                      |
-| txtSetting.titleTxt            | string     | Judul untuk file TXT.                                                                                                                                                                                     |
-| txtSetting.copy                | boolean    | Apakah teks akan disalin atau tidak.                                                                                                                                                                      |
-| txtSetting.templateTxt         | string     | Template teks untuk file TXT.                                                                                                                                                                             |
-| pdfSetting.titlePdf            | string     | Judul untuk file PDF.                                                                                                                                                                                     |
-| pdfSetting.textHeaderLeft      | string     | Teks header kiri untuk file PDF.                                                                                                                                                                          |
-| pdfSetting.orientation         | string     | Orientasi halaman untuk file PDF, bisa "p" (portrait) atau "l" (landscape).                                                                                                                               |
-| pdfSetting.unit                | string     | Satuan ukuran untuk file PDF, misalnya "mm".                                                                                                                                                              |
-| pdfSetting.bgColor             | string     | Warna latar belakang untuk file PDF.                                                                                                                                                                      |
-| pdfSetting.txtColor            | string     | Warna teks untuk file PDF.                                                                                                                                                                                |
-| pdfSetting.theme               | string     | Tema tabel untuk file PDF, misalnya "grid".                                                                                                                                                               |
-| pdfSetting.grandTotalSetting   | object     | Pengaturan grand total untuk file PDF.                                                                                                                                                                    |
-| pdfSetting.openNewTab          | boolean    | Apakah file PDF akan dibuka di tab baru atau tidak.                                                                                                                                                       |
-| pdfSetting.customize           | function   | Fungsi untuk menyesuaikan dokumen file PDF.                                                                                                                                                               |
-| footerSetting.subTotal         | object     | Pengaturan sub total untuk footer.                                                                                                                                                                        |
-| footerSetting.subTotal.caption | string     | Caption untuk sub total.                                                                                                                                                                                  |
-| footerSetting.subTotal.enableCount | boolean| Apakah jumlah item akan dihitung untuk sub total atau tidak.                                                                                                                                              |
-| footerSetting.subTotal.captionItem | string | Caption item untuk sub total.                                                                                                                                                                             |
-| footerSetting.grandTotal       | object     | Pengaturan grand total untuk footer.                                                                                                                                                                      |
-| footerSetting.grandTotal.caption | string   | Caption untuk grand total.                                                                                                                                                                                |
-| footerSetting.grandTotal.enableCount | boolean| Apakah jumlah item akan dihitung untuk grand total atau tidak.                                                                                                                                            |
-| footerSetting.grandTotal.captionItem | string| Caption item untuk grand total.                                                                                                                                                                           |
-
+| Properti                             | Tipe     | Deskripsi                                                                                            |
+| ------------------------------------ | -------- | ---------------------------------------------------------------------------------------------------- |
+| type                                 | string[] | Tipe file yang akan diekspor, bisa berupa "PDF", "EXCEL", atau "TXT".                                |
+| date                                 | object   | Objek yang berisi `start_date` dan `end_date` untuk rentang tanggal data yang akan diekspor.         |
+| data                                 | array    | Data yang akan diekspor dalam bentuk array objek.                                                    |
+| columns                              | array    | Daftar kolom yang akan diekspor beserta label dan pengaturannya.                                     |
+| grouping                             | array    | Pengaturan gruping data, kosongkan jika tidak perlu gruping.                                         |
+| title                                | string   | Judul laporan yang akan ditampilkan di file yang diekspor.                                           |
+| excelSetting                         | object   | Pengaturan tambahan untuk file Excel seperti warna latar belakang, warna teks, header tambahan, dll. |
+| txtSetting                           | object   | Pengaturan tambahan untuk file TXT seperti data template, judul, apakah akan menyalin teks, dll.     |
+| pdfSetting                           | object   | Pengaturan tambahan untuk file PDF seperti judul, header, orientasi, satuan, tema, dll.              |
+| footerSetting                        | object   | Pengaturan footer seperti sub total dan grand total.                                                 |
+| excelSetting.bgColor                 | string   | Warna latar belakang untuk file Excel.                                                               |
+| excelSetting.txtColor                | string   | Warna teks untuk file Excel.                                                                         |
+| excelSetting.additionalTextHeader    | string   | Teks tambahan untuk header file Excel.                                                               |
+| excelSetting.grandTotalSetting       | object   | Pengaturan grand total untuk file Excel.                                                             |
+| excelSetting.customize               | function | Fungsi untuk menyesuaikan worksheet file Excel.                                                      |
+| txtSetting.dataTxt                   | object   | Data yang akan diekspor ke file TXT.                                                                 |
+| txtSetting.titleTxt                  | string   | Judul untuk file TXT.                                                                                |
+| txtSetting.copy                      | boolean  | Apakah teks akan disalin atau tidak.                                                                 |
+| txtSetting.templateTxt               | string   | Template teks untuk file TXT.                                                                        |
+| pdfSetting.titlePdf                  | string   | Judul untuk file PDF.                                                                                |
+| pdfSetting.textHeaderLeft            | string   | Teks header kiri untuk file PDF.                                                                     |
+| pdfSetting.orientation               | string   | Orientasi halaman untuk file PDF, bisa "p" (portrait) atau "l" (landscape).                          |
+| pdfSetting.unit                      | string   | Satuan ukuran untuk file PDF, misalnya "mm".                                                         |
+| pdfSetting.bgColor                   | string   | Warna latar belakang untuk file PDF.                                                                 |
+| pdfSetting.txtColor                  | string   | Warna teks untuk file PDF.                                                                           |
+| pdfSetting.theme                     | string   | Tema tabel untuk file PDF, misalnya "grid".                                                          |
+| pdfSetting.grandTotalSetting         | object   | Pengaturan grand total untuk file PDF.                                                               |
+| pdfSetting.openNewTab                | boolean  | Apakah file PDF akan dibuka di tab baru atau tidak.                                                  |
+| pdfSetting.customize                 | function | Fungsi untuk menyesuaikan dokumen file PDF.                                                          |
+| footerSetting.subTotal               | object   | Pengaturan sub total untuk footer.                                                                   |
+| footerSetting.subTotal.caption       | string   | Caption untuk sub total.                                                                             |
+| footerSetting.subTotal.enableCount   | boolean  | Apakah jumlah item akan dihitung untuk sub total atau tidak.                                         |
+| footerSetting.subTotal.captionItem   | string   | Caption item untuk sub total.                                                                        |
+| footerSetting.grandTotal             | object   | Pengaturan grand total untuk footer.                                                                 |
+| footerSetting.grandTotal.caption     | string   | Caption untuk grand total.                                                                           |
+| footerSetting.grandTotal.enableCount | boolean  | Apakah jumlah item akan dihitung untuk grand total atau tidak.                                       |
+| footerSetting.grandTotal.captionItem | string   | Caption item untuk grand total.                                                                      |
