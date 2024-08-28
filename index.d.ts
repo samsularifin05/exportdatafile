@@ -17,6 +17,7 @@ interface DataItemGenerator {
     [key: string]: any;
 }
 type CustomizePdfFunction = (doc: jsPDF, finalY: number, autoTable?: any) => void;
+type addRowPdfPdfFunction = (tableRows?: any) => void;
 type CustomizeFunctionExcel = (worksheet: ExcelJS.Worksheet) => void;
 interface GenaratorExport<T> {
     columns: ColumnGenarator<T>[];
@@ -41,6 +42,7 @@ interface GenaratorExport<T> {
             colSpan?: number;
         };
         openNewTab?: boolean;
+        addRow?: addRowPdfPdfFunction;
         customize?: CustomizePdfFunction;
     };
     date?: {
