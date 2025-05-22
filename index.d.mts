@@ -3,15 +3,18 @@ import ExcelJS from 'exceljs';
 
 type FormatType = "RP" | "GR" | "DATETIME" | "NUMBER" | "";
 type HalignType = "center" | "right" | "left" | "";
+type ValignType = "top" | "middle" | "bottom" | undefined;
 interface ColumnGenarator<T> {
     key: keyof T;
     label?: string;
     options?: {
         format?: FormatType;
         halign?: HalignType;
+        valign?: ValignType;
         disabledColumn?: boolean;
         disabledFooter?: boolean;
     };
+    child?: ColumnGenarator<T>[];
 }
 interface DataItemGenerator {
     [key: string]: any;
