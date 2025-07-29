@@ -1,7 +1,7 @@
 import jsPDF from 'jspdf';
 import ExcelJS from 'exceljs';
 
-type FormatType = "RP" | "GR" | "DATETIME" | "NUMBER" | "";
+type FormatType = "RP" | "GR" | "DATETIME" | "NUMBER" | "IMAGE" | "";
 type HalignType = "center" | "right" | "left" | "";
 type ValignType = "top" | "middle" | "bottom" | undefined;
 interface ColumnGenarator<T> {
