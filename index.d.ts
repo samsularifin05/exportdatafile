@@ -21,7 +21,7 @@ interface DataItemGenerator {
 }
 type CustomizePdfFunction = (doc: jsPDF, finalY: number, autoTable?: any) => void;
 type addRowPdfPdfFunction = (tableRows?: any) => void;
-type CustomizeFunctionExcel = (worksheet: ExcelJS.Worksheet) => void;
+type CustomizeFunctionExcel = (worksheet: ExcelJS.Worksheet, lastIndex: number) => void;
 interface GenaratorExport<T> {
     columns: ColumnGenarator<T>[];
     data: DataItemGenerator[];
@@ -36,7 +36,7 @@ interface GenaratorExport<T> {
         bgColor?: string;
         titlePdf?: string;
         txtColor?: string;
-        finalY?: number;
+        startY?: number;
         textHeaderRight?: string;
         textHeaderLeft?: string;
         theme?: "grid" | "striped" | "plain";
@@ -46,7 +46,8 @@ interface GenaratorExport<T> {
         };
         openNewTab?: boolean;
         addRow?: addRowPdfPdfFunction;
-        customize?: CustomizePdfFunction;
+        customHeader?: CustomizePdfFunction;
+        customFooter?: CustomizePdfFunction;
         disablePrintDate?: boolean;
     };
     date?: {
@@ -64,12 +65,14 @@ interface GenaratorExport<T> {
         titleExcel?: string;
         bgColor?: string;
         txtColor?: string;
+        startY?: number;
         additionalTextHeader?: string;
         grandTotalSetting?: {
             disableGrandTotal?: boolean;
             colSpan?: number;
         };
-        customize?: CustomizeFunctionExcel;
+        customHeader?: CustomizeFunctionExcel;
+        customFooter?: CustomizeFunctionExcel;
     };
     grouping: string[];
     footerSetting?: {
