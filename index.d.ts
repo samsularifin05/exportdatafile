@@ -11,6 +11,7 @@ interface ColumnGenarator<T> {
         format?: FormatType;
         halign?: HalignType;
         valign?: ValignType;
+        width?: number;
         disabledColumn?: boolean;
         disabledFooter?: boolean;
     };
