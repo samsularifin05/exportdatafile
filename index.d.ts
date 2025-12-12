@@ -11,22 +11,26 @@ interface ColumnGenarator<T> {
         format?: FormatType;
         halign?: HalignType;
         valign?: ValignType;
+        txtColor?: string;
+        bgColor?: string;
         width?: number;
         disabledColumn?: boolean;
         disabledFooter?: boolean;
     };
     child?: ColumnGenarator<T>[];
+    formatter?: (cellValue: any, rowData: any) => any;
 }
 interface DataItemGenerator {
     [key: string]: any;
 }
+type FileType = "EXCEL" | "PDF" | "TXT" | "ALL";
 type CustomizePdfFunction = (doc: jsPDF, finalY: number, autoTable?: any) => void;
 type addRowPdfPdfFunction = (tableRows?: any) => void;
 type CustomizeFunctionExcel = (worksheet: ExcelJS.Worksheet, lastIndex: number) => void;
 interface GenaratorExport<T> {
     columns: ColumnGenarator<T>[];
     data: DataItemGenerator[];
-    type: ("EXCEL" | "PDF" | "TXT" | "ALL")[];
+    type: FileType[];
     title?: string;
     pdfSetting?: {
         orientation?: "p" | "portrait" | "l" | "landscape";
@@ -38,6 +42,10 @@ interface GenaratorExport<T> {
         titlePdf?: string;
         txtColor?: string;
         startY?: number;
+        header?: {
+            column?: boolean;
+            information?: boolean;
+        };
         textHeaderRight?: string;
         textHeaderLeft?: string;
         theme?: "grid" | "striped" | "plain";
@@ -46,10 +54,10 @@ interface GenaratorExport<T> {
             colSpan?: number;
         };
         openNewTab?: boolean;
+        disablePrintDate?: boolean;
         addRow?: addRowPdfPdfFunction;
         customHeader?: CustomizePdfFunction;
         customFooter?: CustomizePdfFunction;
-        disablePrintDate?: boolean;
     };
     date?: {
         start_date?: string;
@@ -57,7 +65,7 @@ interface GenaratorExport<T> {
         caption?: string;
     };
     txtSetting?: {
-        dataTxt?: DataItemGenerator[] | DataItemGenerator;
+        dataTxt?: DataItemGenerator | DataItemGenerator[];
         titleTxt: string;
         templateTxt?: string;
         copy?: boolean;
@@ -65,12 +73,15 @@ interface GenaratorExport<T> {
     excelSetting?: {
         titleExcel?: string;
         bgColor?: string;
-        txtColor?: string;
         startY?: number;
+        txtColor?: string;
         additionalTextHeader?: string;
         grandTotalSetting?: {
             disableGrandTotal?: boolean;
             colSpan?: number;
+        };
+        subTotal?: {
+            disableGrandTotal?: boolean;
         };
         customHeader?: CustomizeFunctionExcel;
         customFooter?: CustomizeFunctionExcel;
@@ -79,15 +90,15 @@ interface GenaratorExport<T> {
     footerSetting?: {
         subTotal?: {
             caption?: string;
+            disableSubtotal?: boolean;
             enableCount?: boolean;
             captionItem?: string;
-            disableSubtotal?: boolean;
         };
         grandTotal?: {
             caption?: string;
+            disableGrandTotal?: boolean;
             captionItem?: string;
             enableCount?: boolean;
-            disableGrandTotal?: boolean;
         };
     };
 }
