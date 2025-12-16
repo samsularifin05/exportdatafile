@@ -557,6 +557,28 @@ ExportData({
 
 ## 📋 API Reference
 
+### GenaratorExport Interface
+
+Interface utama untuk fungsi `ExportData`:
+
+```typescript
+interface GenaratorExport<T> {
+  // Required Parameters
+  columns: ColumnGenarator<T>[]; // Konfigurasi kolom
+  data: DataItemGenerator[]; // Data yang akan diekspor
+  type: FileType[]; // Tipe file export
+  grouping: string[]; // Array key untuk grouping
+
+  // Optional Parameters
+  title?: string; // Judul laporan
+  date?: DateConfig; // Konfigurasi tanggal
+  pdfSetting?: PdfConfig; // Konfigurasi PDF
+  excelSetting?: ExcelConfig; // Konfigurasi Excel
+  txtSetting?: TxtConfig; // Konfigurasi TXT
+  footerSetting?: FooterConfig; // Konfigurasi footer
+}
+```
+
 ### ExportData Parameters
 
 | Parameter       | Type                | Required | Description                                                        |
@@ -564,13 +586,129 @@ ExportData({
 | `type`          | `FileType[]`        | ✅       | Array tipe file: `["EXCEL"]`, `["PDF"]`, `["TXT"]`, atau `["ALL"]` |
 | `data`          | `Array<any>`        | ✅       | Data yang akan diekspor                                            |
 | `columns`       | `ColumnGenarator[]` | ✅       | Konfigurasi kolom                                                  |
-| `title`         | `string`            | ❌       | Judul laporan                                                      |
 | `grouping`      | `string[]`          | ✅       | Array key untuk grouping (kosongkan jika tidak perlu)              |
+| `title`         | `string`            | ❌       | Judul laporan                                                      |
 | `date`          | `DateConfig`        | ❌       | Konfigurasi tanggal                                                |
 | `excelSetting`  | `ExcelConfig`       | ❌       | Konfigurasi Excel                                                  |
 | `pdfSetting`    | `PdfConfig`         | ❌       | Konfigurasi PDF                                                    |
 | `txtSetting`    | `TxtConfig`         | ❌       | Konfigurasi TXT                                                    |
 | `footerSetting` | `FooterConfig`      | ❌       | Konfigurasi footer (subtotal/grandtotal)                           |
+
+### DateConfig Interface
+
+```typescript
+interface DateConfig {
+  start_date?: string; // Tanggal mulai (format: DD-MM-YYYY)
+  end_date?: string; // Tanggal akhir (format: DD-MM-YYYY)
+  caption?: string; // Caption untuk periode (default: "Periode")
+}
+```
+
+**Contoh:**
+
+```typescript
+date: {
+  start_date: "01-01-2024",
+  end_date: "31-01-2024",
+  caption: "Periode Laporan"
+}
+```
+
+### PdfConfig Interface
+
+```typescript
+interface PdfConfig {
+  orientation?: "p" | "portrait" | "l" | "landscape"; // Orientasi halaman
+  unit?: "pt" | "px" | "in" | "mm" | "cm" | "ex" | "em" | "pc"; // Unit ukuran
+  width?: number; // Lebar custom
+  height?: number; // Tinggi custom
+  fontSIze?: number; // Ukuran font (default: 10)
+  bgColor?: string; // Warna background header (hex tanpa #)
+  titlePdf?: string; // Custom title PDF
+  txtColor?: string; // Warna teks header (hex tanpa #)
+  startY?: number; // Posisi Y awal tabel
+  header?: {
+    column?: boolean; // Tampilkan header kolom
+    information?: boolean; // Tampilkan informasi header
+  };
+  textHeaderRight?: string; // Teks header kanan
+  textHeaderLeft?: string; // Teks header kiri
+  theme?: "grid" | "striped" | "plain"; // Theme tabel
+  grandTotalSetting?: {
+    disableGrandTotal?: boolean; // Disable grand total
+    colSpan?: number; // Colspan untuk grand total
+  };
+  openNewTab?: boolean; // Buka PDF di tab baru
+  disablePrintDate?: boolean; // Disable tanggal cetak
+  customHeader?: (doc: jsPDF, finalY: number, autoTable?: any) => void;
+  customFooter?: (doc: jsPDF, finalY: number, autoTable?: any) => void;
+}
+```
+
+### ExcelConfig Interface
+
+```typescript
+interface ExcelConfig {
+  titleExcel?: string; // Custom title Excel
+  bgColor?: string; // Warna background header (hex tanpa #)
+  startY?: number; // Baris mulai (default: 1)
+  txtColor?: string; // Warna teks header (hex tanpa #)
+  additionalTextHeader?: string; // Teks tambahan di header (multiline dengan \n)
+  grandTotalSetting?: {
+    disableGrandTotal?: boolean; // Disable grand total
+    colSpan?: number; // Colspan untuk grand total
+  };
+  subTotal?: {
+    disableGrandTotal?: boolean; // Disable subtotal
+  };
+  customHeader?: (worksheet: ExcelJS.Worksheet, lastIndex: number) => void;
+  customFooter?: (worksheet: ExcelJS.Worksheet, lastIndex: number) => void;
+}
+```
+
+### TxtConfig Interface
+
+```typescript
+interface TxtConfig {
+  dataTxt?: DataItemGenerator | DataItemGenerator[]; // Data untuk template
+  titleTxt: string; // Judul file TXT
+  templateTxt?: string; // Template dengan placeholder {key}
+  copy?: boolean; // Auto copy ke clipboard
+}
+```
+
+**Contoh:**
+
+```typescript
+txtSetting: {
+  dataTxt: { name: "John", amount: 15000 },
+  titleTxt: "Receipt",
+  copy: true,
+  templateTxt: `
+    Name: {name}
+    Amount: Rp {amount}
+  `
+}
+```
+
+### FooterConfig Interface
+
+```typescript
+interface FooterConfig {
+  subTotal?: {
+    caption?: string; // Caption subtotal (default: "SUBTOTAL")
+    disableSubtotal?: boolean; // Disable subtotal
+    enableCount?: boolean; // Tampilkan jumlah item
+    captionItem?: string; // Caption untuk jumlah item
+  };
+  grandTotal?: {
+    caption?: string; // Caption grand total (default: "GRAND TOTAL")
+    disableGrandTotal?: boolean; // Disable grand total
+    captionItem?: string; // Caption untuk jumlah item
+    enableCount?: boolean; // Tampilkan jumlah item
+  };
+}
+```
 
 ## 🔧 Tips & Best Practices
 

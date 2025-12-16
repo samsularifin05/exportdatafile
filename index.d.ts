@@ -24,14 +24,21 @@ interface DataItemGenerator {
     [key: string]: any;
 }
 type FileType = "EXCEL" | "PDF" | "TXT" | "ALL";
+type GroupingStyle = {
+    txtColor?: string;
+    bgColor?: string;
+    halign?: "left" | "right" | "center";
+};
 type CustomizePdfFunction = (doc: jsPDF, finalY: number, autoTable?: any) => void;
 type addRowPdfPdfFunction = (tableRows?: any) => void;
 type CustomizeFunctionExcel = (worksheet: ExcelJS.Worksheet, lastIndex: number) => void;
+type GroupingSettingType = GroupingStyle | ((item: DataItemGenerator) => GroupingStyle);
 interface GenaratorExport<T> {
     columns: ColumnGenarator<T>[];
     data: DataItemGenerator[];
     type: FileType[];
     title?: string;
+    groupingSetting?: GroupingSettingType;
     pdfSetting?: {
         orientation?: "p" | "portrait" | "l" | "landscape";
         unit?: "pt" | "px" | "in" | "mm" | "cm" | "ex" | "em" | "pc";
@@ -117,6 +124,6 @@ interface GenaratorExport<T> {
  * @param type - Jenis laporan yang akan diekspor ("PDF" "TXT" atau "EXCEL").
  * @param footerSetting - Setting Footer Subtotal atau GranTotal
  */
-declare const ExportData: <T>({ columns, data, grouping, date, type, txtSetting, pdfSetting, excelSetting, title, footerSetting }: GenaratorExport<T>) => void;
+declare const ExportData: <T>({ columns, data, grouping, date, type, txtSetting, pdfSetting, excelSetting, title, footerSetting, groupingSetting, }: GenaratorExport<T>) => void;
 
 export { type ColumnGenarator, ExportData };
