@@ -62,6 +62,7 @@ interface GenaratorExport<T> {
         };
         openNewTab?: boolean;
         disablePrintDate?: boolean;
+        returnDataUri?: boolean;
         addRow?: addRowPdfPdfFunction;
         customHeader?: CustomizePdfFunction;
         customFooter?: CustomizePdfFunction;
@@ -90,6 +91,7 @@ interface GenaratorExport<T> {
         subTotal?: {
             disableGrandTotal?: boolean;
         };
+        returnBuffer?: boolean;
         customHeader?: CustomizeFunctionExcel;
         customFooter?: CustomizeFunctionExcel;
     };
