@@ -91,7 +91,7 @@ interface GenaratorExport<T> {
         subTotal?: {
             disableGrandTotal?: boolean;
         };
-        returnBuffer?(buffer: ArrayBuffer): void;
+        returnBuffer?(buffer: string): void;
         customHeader?: CustomizeFunctionExcel;
         customFooter?: CustomizeFunctionExcel;
     };
